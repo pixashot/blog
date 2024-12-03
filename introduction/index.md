@@ -3,7 +3,7 @@ excerpt: "Pixashot is a free, open-source web screenshot API running on Google C
 published_at: "2024-12-02 09:00:00"
 is_published: true
 images:
-  featured: bee.jpg
+  featured: capture.jpg
 ---
 
 # Introducing Pixashot: Free Web Screenshot API on Google Cloud Run

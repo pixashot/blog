@@ -5,35 +5,23 @@ images:
   featured: capture.jpg
 ---
 
-# Introducing Pixashot: A Developer-First Screenshot API That's Actually Free
+# Introducing Pixashot: A Free, Open-Source URL to Screenshot API
 
-Here's a frustration I bet you've experienced: you need to add screenshot capabilities to your project, but the pricing is wild - hundreds of dollars monthly for what's essentially a headless browser. I kept thinking there had to be a better way...
+Screenshot APIs are unnecessarily expensive for what they do - running a headless browser shouldn't cost a lot. That's why I built Pixashot - an open-source screenshot API that gives you complete control without the high price.
 
-That's why I built Pixashot - an open-source, privacy-first screenshot service that lets you capture up to 20,000 screenshots using Google Cloud Run's free tier before spending a cent.
+Here's what's exciting: you can run this on Google Cloud Run and capture up to 20,000 screenshots monthly without paying a cent for infrastructure. [Cloud Run's free tier](https://cloud.google.com/run/pricing) is surprisingly generous, and we're taking full advantage of it.
 
-## Why Pixashot?
+## Why I Built Pixashot
 
-Let me explain why screenshot APIs are perfect for Cloud Run. They're fundamentally simple - just running a headless browser in a container, wrapped with a few extra features. Cloud Run gives you an incredibly generous free tier:
-- 2 million requests per month
-- 360,000 vCPU-seconds
-- 180,000 GiB-seconds
+I've spent years working with various screenshot services, and they all seemed to miss the mark in one way or another. Pixashot addresses everything that used to get to me:
 
-Thanks to Pixashot's efficient single-context architecture and resource management, you'll stay comfortably within these limits while getting all the features you'd expect from a premium service:
+Instead of expensive subscriptions, you can run it on Google Cloud Run's free tier or deploy the Docker container wherever you prefer. Your data stays with you - no third-party processing or unknown black boxes. And, it handles everything from full-page captures to custom viewports, dark mode, and even blocks cookie consent popups.
 
-- Capture exactly what you need with custom viewport and full-page options
-- Stop fighting with cookie popups - automatic consent handling built in
-- Dark mode support and custom JavaScript injection
-- Multiple formats (PNG, JPEG, WebP, PDF)
-- Geolocation spoofing and mobile device emulation
-- Complete data privacy through self-hosted deployment
-- Token-based authentication and comprehensive logging
+## Getting Up and Running
 
-## Deploy in Minutes
-
-Let me show you how to deploy Pixashot. Once you have a Google Cloud account set up with Cloud Run enabled, it's just a single command:
+The setup process is incredibly quick. With a Google Cloud account and Cloud Run enabled, here's all you need:
 
 ```bash
-# Deploy to Cloud Run
 gcloud run deploy pixashot \
   --image gpriday/pixashot:latest \
   --platform managed \
@@ -43,9 +31,7 @@ gcloud run deploy pixashot \
   --set-env-vars="AUTH_TOKEN=your_secret_token"
 ```
 
-See our full [getting started](https://pixashot.com/docs/getting-started) guide for detailed help.
-
-Then capture screenshots with a single API call:
+Capturing your first screenshot is just as straightforward:
 
 ```bash
 curl -X POST https://your-service.run.app/capture \
@@ -54,78 +40,42 @@ curl -X POST https://your-service.run.app/capture \
   -d '{
     "url": "https://example.com",
     "format": "png",
-    "full_page": true,
-    "window_width": 1280,
-    "window_height": 720,
-    "dark_mode": false,
-    "block_media": true
+    "full_page": true
   }'
 ```
 
-## Real-World Applications
+## What Can Pixashot Do?
 
-I built Pixashot because I needed these capabilities in my own projects. Here are some of the ways you could use it today:
+Pixashot gives you the power to capture exactly what you need, how you need it:
 
-**Development and Testing:**
-- Visual regression testing in CI/CD pipelines
-- UI consistency verification
-- Development environment monitoring
+* **Full-Page Screenshots:** Capture entire web pages, not just the visible portion.
+* **Custom Viewports:** Define the exact size and resolution you need.
+* **Element Snapshots:** Target specific elements on the page with CSS selectors.
+* **Mobile Simulation:** Emulate various mobile devices and screen sizes.
+* **PDF Generation:** Turn web pages into clean, print-ready PDFs.
+* **Dark Mode:** Capture pages as they appear in dark mode.
+* **Geolocation Spoofing:** Test location-specific content.
+* **Custom JavaScript Injection:** Run your own code before capturing.
+* **Cookie and Popup Handling:** Block those annoying consent banners and popups.
+* **Multiple Formats:** Get your screenshots as PNG, JPEG, or WebP.
+* **Network Control:** Configure timeouts and handle network activity.
 
-**Compliance and Documentation:**
-- Financial interface archiving
-- Healthcare portal documentation
-- Legal compliance evidence
-- Automated audit trails
+In short, Pixashot offers all the core features you'd expect from a professional screenshot API, plus the flexibility and control that comes with an open-source, self-hosted solution.
 
-**Content Generation:**
-- Social media preview cards
-- Website thumbnails for directories
-- Marketing asset creation
+## Built From Real-World Experience
 
-But I always felt the pricing was excessive for what's essentially a straightforward service. With Pixashot, you get premium-grade features without the premium price tag.
+Every feature in Pixashot comes from actual problems I've faced. Whether you're running visual tests, archiving content, or generating social media previews, I've designed it to be both powerful and dependable.
 
-## Built for Real Developer Needs
+## What's Coming Next
 
-**Privacy and Security:**
-- Complete data sovereignty - your data stays in your infrastructure
-- Token-based authentication
-- Comprehensive audit logging
-- Resource limits and rate limiting
-- Network security controls
-- GDPR and HIPAA-friendly deployment options
+I'm excited about what's coming. Check out our public [roadmap](https://github.com/pixashot/pixashot/blob/develop/ROADMAP.md) to see what coming.
 
-**Reliability Features:**
-- Comprehensive error handling
-- Built-in rate limiting
-- Response caching support
-- Health monitoring endpoints
-- Detailed logging and diagnostics
-- Support for proxy servers
-- Cookie consent and popup blockers
-- Fast response times (typically around 4-8 seconds)
+## Try It Out
 
-## Looking Ahead
+Pixashot is ready for you to explore:
 
-While the open-source version provides everything many teams need, we're developing a premium Docker container (coming in 4 months) that will include enhanced security features, advanced CI/CD integrations, and priority support for teams that need additional capabilities.
+- Play around with the API at [our playground](https://pixashot.com/playground)
+- Dive into the docs at [https://pixashot.com/docs/overview](https://pixashot.com/docs/overview)
+- Check out the code on [GitHub](https://github.com/pixashot/pixashot)
 
-## Get Started Today
-
-1. Visit our [API Playground](https://pixashot.com/playground) to test the service interactively
-2. Check the [documentation](https://pixashot.com/docs/overview) for detailed integration guides
-3. Deploy your own instance using the instructions above
-
-I'm excited to start using Pixashot in my own projects, and I believe it'll help you cut your screenshot infrastructure costs while getting everything you'd expect from a premium service.
-
-## Open Source and Community-Driven
-
-Pixashot is completely open source and available on [GitHub](https://github.com/pixashot/pixashot). I built it to help developers make better use of their cloud resources, and I'd love to see how you help it evolve.
-
-If you have ideas for improvements or run into any issues:
-- Open an issue on GitHub
-- Start a discussion in our community
-- Contribute to the project
-- Share your use cases
-
-Please let me know what you think of Pixashot and how you're using it in your projects. I'm always looking for ways to make it even more useful for developers.
-
-Ready to take back control of your screenshot infrastructure? Deploy Pixashot in the next 5 minutes and see what screenshot APIs should have been all along.
+I built Pixashot because I needed it, and I'm confident you'll find it useful too. Give it a try and let me know what you think! You can find me in our [GitHub discussions](https://github.com/pixashot/pixashot/discussions) - I'm always excited to hear how people are using it.

@@ -1,6 +1,6 @@
 ---
 excerpt: "Pixashot is a free, open-source web screenshot API running on Google Cloud Run that lets developers capture up to 20,000 screenshots monthly with premium features."
-published_at: "2024-12-17 05:00:00"
+published_at: "2025-01-20 05:00:00"
 images:
   featured: capture.jpg
 ---
